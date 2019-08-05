@@ -112,17 +112,23 @@ function Card(info) {
 	const bio = document.createElement('p')
 	bio.textContent = `Bio: ${info.bio}`
 
-	card.appendChild(img)
-	card.appendChild(cardInfo)
 
-	cardInfo.appendChild(name)
-	cardInfo.appendChild(username)
-	cardInfo.appendChild(location)
-	cardInfo.appendChild(profile)
-	cardInfo.appendChild(profileLink)
-	cardInfo.appendChild(followers)
-	cardInfo.appendChild(following)
-	cardInfo.appendChild(bio)
+	appendChildren(card, [img, cardInfo])
 
+	appendChildren(
+        cardInfo, 
+        [name, username, location, profile, profileLink, followers, following, bio]
+    )
+
+	
 	return card
+}
+
+
+//Helper
+
+function appendChildren(to, elements) {
+    elements.forEach(element => {
+        to.appendChild(element)
+    })
 }
