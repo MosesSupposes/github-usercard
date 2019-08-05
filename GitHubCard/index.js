@@ -62,3 +62,54 @@ const followersArray = [];
   luishrd
   bigknell
 */
+
+function Card(info) {
+	const card = document.createElement('div')
+	card.classList.add('card')
+
+	const img = document.createElement('img')
+	img.src = info.avatar_url
+
+	const cardInfo = document.createElement('div')
+
+	const name = document.createElement('h3')
+	name.classList.add('name')
+	name.textContent = info.name
+
+	const username = document.createElement('p')
+	username.classList.add('username')
+	username.textContent = info.login
+
+	const location = document.createElement('p')
+	location.textContent = `Location: ${info.location}`
+
+	const profile = document.createElement('p')
+	profile.textContent = "Profile: "
+
+	const profileLink = document.createElement('a')
+	profileLink.href = info.html_url
+	profileLink.textContent = info.html_url
+
+	const followers = document.createElement('p')
+	followers.textContent = `Followers: ${info.followers}`
+
+	const following = document.createElement('p')
+	following.textContent = `Following: ${info.following}`
+
+	const bio = document.createElement('p')
+	bio.textContent = `Bio: ${info.bio}`
+
+	card.appendChild(img)
+	card.appendChild(cardInfo)
+
+	cardInfo.appendChild(name)
+	cardInfo.appendChild(username)
+	cardInfo.appendChild(location)
+	cardInfo.appendChild(profile)
+	cardInfo.appendChild(profileLink)
+	cardInfo.appendChild(followers)
+	cardInfo.appendChild(following)
+	cardInfo.appendChild(bio)
+
+	return card
+}
