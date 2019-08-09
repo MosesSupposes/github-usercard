@@ -1,3 +1,23 @@
+/**
+ * Main
+ */
+
+
+renderCards(["MosesSupposes"])
+
+
+const lambdaInstructors = ["tetondan", "dustinmyers", "justsml", "luishrd", "bigknell"];
+const myFollowers = ["techieshark", "wurde", "Brandon-Pampuch", "amlane", "kefimochi"]
+
+renderCards(myFollowers)
+
+
+
+
+/**
+ * Helpers 
+ */
+
 
 function fetchGhProfile(username) {
 	return axios
@@ -16,15 +36,6 @@ function renderCards(usernames) {
 		})
 	})
 }
-
-renderCards(["MosesSupposes"])
-
-
-const lambdaInstructors = ["tetondan", "dustinmyers", "justsml", "luishrd", "bigknell"];
-const myFollowers = ["techieshark", "wurde", "Brandon-Pampuch", "amlane", "kefimochi"]
-
-renderCards(myFollowers)
-
 
 function Card(info) {
 	const card = document.createElement('div')
@@ -73,9 +84,6 @@ function Card(info) {
 	
 	return card
 }
-
-
-//Helper
 
 function appendChildren(to, elements) {
     elements.forEach(element => {
