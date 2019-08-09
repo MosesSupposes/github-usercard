@@ -10,8 +10,9 @@ fetchGhFollowers("MosesSupposes")
 	.then(function fetchAndRenderFriendData(res) {
 		res.forEach(friend => {
 		fetchGhProfile(friend.login)
-		.then(renderIntoCard)
+		.then(renderIntoCard, logError)
 	})
+	.catch(logError)
 })
 
 /**
@@ -23,18 +24,21 @@ function fetchGhProfile(username) {
 	return axios
 		.get(`https://api.github.com/users/${username}`)
 		.then(res => res.data)
+		.catch(logError)
 }
 
 function fetchGhFollowers(username) {
 	return axios
 		.get(`https://api.github.com/users/${username}/followers`)
 		.then(res => res.data)
+		.catch(logError)
 }
 
 function renderCards(usernames) {
 	usernames.forEach(function fetchAndRenderProfileData(username) {
 		fetchGhProfile(username)
 		.then(renderIntoCard)
+		.catch(logError)
 	})
 }
 
@@ -94,4 +98,8 @@ function appendChildren(to, elements) {
     elements.forEach(element => {
         to.appendChild(element)
     })
+}
+
+function logError(err) {
+	console.error(err)
 }
