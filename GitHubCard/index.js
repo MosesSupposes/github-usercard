@@ -2,17 +2,17 @@
  * Main
  */
 
-
-renderCards(["MosesSupposes"])
-
-
 const lambdaInstructors = ["tetondan", "dustinmyers", "justsml", "luishrd", "bigknell"];
-const myFollowers = ["techieshark", "wurde", "Brandon-Pampuch", "amlane", "kefimochi"]
 
-renderCards(myFollowers)
+renderCards(["MosesSupposes", ...lambdaInstructors])
 
-
-
+fetchGhFollowers("MosesSupposes")
+	.then(function fetchAndRenderFriendData(res) {
+		res.forEach(friend => {
+		fetchGhProfile(friend.login)
+		.then(renderIntoCard)
+	})
+})
 
 /**
  * Helpers 
@@ -22,19 +22,24 @@ renderCards(myFollowers)
 function fetchGhProfile(username) {
 	return axios
 		.get(`https://api.github.com/users/${username}`)
-		.then(function logData(res) {
-			console.log(res.data)
-			return res.data
-		})
+		.then(res => res.data)
+}
+
+function fetchGhFollowers(username) {
+	return axios
+		.get(`https://api.github.com/users/${username}/followers`)
+		.then(res => res.data)
 }
 
 function renderCards(usernames) {
 	usernames.forEach(function fetchAndRenderProfileData(username) {
 		fetchGhProfile(username)
-		.then(function renderIntoCard(data) {
-			document.querySelector('.cards').appendChild( Card(data) )
-		})
+		.then(renderIntoCard)
 	})
+}
+
+function renderIntoCard(data) {
+	document.querySelector('.cards').appendChild( Card(data) )
 }
 
 function Card(info) {
