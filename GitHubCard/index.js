@@ -9,11 +9,11 @@ renderCards(["MosesSupposes", ...lambdaInstructors])
 fetchGhFollowers("MosesSupposes")
 	.then(function fetchAndRenderFriendData(res) {
 		res.forEach(friend => {
-		fetchGhProfile(friend.login)
-		.then(renderIntoCard, logError)
+			fetchGhProfile(friend.login)
+			.then(renderIntoCard, logError)
+		})
 	})
 	.catch(logError)
-})
 
 /**
  * Helpers 
