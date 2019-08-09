@@ -7,7 +7,7 @@ const lambdaInstructors = ["tetondan", "dustinmyers", "justsml", "luishrd", "big
 renderCards(["MosesSupposes", ...lambdaInstructors])
 
 fetchGhFollowers("MosesSupposes")
-	.then(function fetchAndRenderFriendData(res) {
+	.then(function fetchAndRenderFriendProfiles(res) {
 		res.forEach(friend => {
 			fetchGhProfile(friend.login)
 			.then(renderIntoCard, logError)
